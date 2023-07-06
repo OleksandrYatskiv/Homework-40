@@ -1,4 +1,4 @@
-let CATEGORIES = {
+const CATEGORIES = {
     computers: [
         {
             'name': 'Macbook Air M2',
@@ -89,8 +89,8 @@ let CATEGORIES = {
     ],
 };
 
-let categories = document.querySelectorAll('.categories');
-let main = document.querySelector('.products');
+const categories = document.querySelectorAll('.categories');
+const main = document.querySelector('.products');
 
 categories.forEach(category => {
     category.addEventListener('click', (e) => {
@@ -102,9 +102,9 @@ function showProducts(category) {
     main.innerHTML = '';
 
     CATEGORIES[category].forEach((product, index) => {
-        let productTitle = document.createElement('h3');
-        let productPrice = document.createElement('p');
-        let productImg = document.createElement('img');
+        const productTitle = document.createElement('h3');
+        const productPrice = document.createElement('p');
+        const productImg = document.createElement('img');
 
         productTitle.classList.add('product-title');
         productPrice.classList.add('product-price');
@@ -118,7 +118,11 @@ function showProducts(category) {
         productTitle.setAttribute('data-category', category);
         productImg.setAttribute('src', product.img);
 
-        let productContainer = document.createElement('div');
+        productTitle.addEventListener('click', (e) => {
+            showProductsInfo(product);
+        });
+
+        const productContainer = document.createElement('div');
         productContainer.classList.add('product-info');
 
         productContainer.appendChild(productImg);
@@ -129,29 +133,16 @@ function showProducts(category) {
     });
 }
 
-let productTitles = document.querySelectorAll('.product-title');
-// console.log(productTitles);
-
-productTitles.forEach(productTitle => {
-    productTitle.addEventListener('click', (e) => {
-        let productIndex = productTitle.getAttribute('id');
-        let productCategory = productTitle.getAttribute('data-category');
-        // console.log(productIndex);
-
-        showProductsInfo(CATEGORIES.productCategory[productIndex]);//???
-    });
-});
-
-let productInfoContainer = document.querySelector('.info-container');
+const productInfoContainer = document.querySelector('.info-container');
 
 function showProductsInfo(product) {
     productInfoContainer.innerHTML = '';
 
-    let productTitle = document.createElement('h3');
-    let productPrice = document.createElement('p');
-    let productImg = document.createElement('img');
-    let productDescription = document.createElement('p');
-    let buyButton = document.createElement('button');
+    const productTitle = document.createElement('h3');
+    const productPrice = document.createElement('p');
+    const productImg = document.createElement('img');
+    const productDescription = document.createElement('p');
+    const buyButton = document.createElement('button');
 
     productTitle.classList.add('product-title');
     productPrice.classList.add('product-price');
@@ -159,13 +150,14 @@ function showProductsInfo(product) {
     productDescription.classList.add('product-description');
     buyButton.classList.add('buy-button');
 
-    productDescription.innerHTML = product.description;
-    productPrice.innerHTML = product.price;
-    productTitle.innerHTML = product.name;
+    productDescription.innerText = product.description;
+    productPrice.innerText = product.price;
+    productTitle.innerText = product.name;
+    buyButton.innerText = 'Buy product';
 
     productImg.setAttribute('src', product.img);
 
-    let productContainer = document.createElement('div');
+    const productContainer = document.createElement('div');
     productContainer.classList.add('product-info');
 
     productContainer.appendChild(productImg);
@@ -177,10 +169,9 @@ function showProductsInfo(product) {
     productInfoContainer.appendChild(productContainer);
 
     buyButton.addEventListener('click', () => {
+        alert(`Product bought successfully! Page will be automatically reloaded.`);
         setTimeout(() => {
-            alert(`Product bought successfully! Page will be automatically reloaded.`);
             window.location.reload();
-        }, 3000);
+        }, 1000);
     });
 }
-

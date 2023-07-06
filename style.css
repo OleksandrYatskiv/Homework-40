@@ -8,19 +8,10 @@
 .wrapper {
     margin: 0 5vw;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1.5fr;
     margin-top: 50px;
 
 }
-
-/* aside {
-    margin-top: 50px;
-    padding-right: 15px;
-    display: inline-flex;
-    flex-direction: column;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-} */
 
 .categories {
     margin-bottom: 30px;
@@ -29,10 +20,6 @@
 .categories:hover {
     color: blue;
     cursor: pointer;
-}
-
-.buy-button{
-    display: none;
 }
 
 .product-info{
@@ -56,3 +43,30 @@
     color: blue;
     cursor: pointer;
 }
+
+.product-description{
+    width: 300px;
+    margin: 10px 0;
+}
+
+.product-price{
+    font-style: italic;
+}
+
+.buy-button {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .buy-button:hover {
+    background-color: #45a049;
+  }
